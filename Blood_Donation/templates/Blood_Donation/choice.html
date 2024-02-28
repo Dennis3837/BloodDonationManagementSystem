@@ -1,0 +1,35 @@
+{% extends "Blood_Donation/base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center text-center">
+        <div class="col-md-8">
+            <h1 class="display-4 text-danger">Join the Lifesaving Journey</h1>
+            <p class="lead">Make a difference by choosing your role in our blood donation community.</p>
+        </div>
+    </div>
+
+    <div class="row mt-4 justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <p class="mb-4">Your decision to register as a donor or recipient will contribute to saving lives. Select your role now!</p>
+
+                    <form method="post" action="{% url 'donorform' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-lg btn-block">Register as a Donor</button>
+                    </form>
+                 <br>
+                    <form method="post" action="{% url 'customerform' %}" class="mt-3">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-lg btn-block">Register as a Recipient</button>
+                    </form>
+                 <br>   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends "Blood_Donation/base.html" %}
+
+{% block content %}
+<div id="mn" class="container">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="card-body text-center">
+            <h2 class="text-danger mb-4" style="font-family: 'Helvetica', sans-serif; font-weight: bold; font-size: 26px;">Request for Blood Successful!</h2>
+            <p class="lead" style="font-family: 'Arial', sans-serif; font-size: 20px;">
+              Thank you for reaching out to us for your blood needs. Your health is important to us, and we're here to support you.
+              Our team acknowledges your request, and we are committed to finding a suitable blood donor for you.
+            </p>
+            <hr>
+            <p class="text-muted" style="font-family: 'Verdana', sans-serif; font-size: 20px;">
+              Our dedicated team is working diligently to match your requirements with available donors. We'll be in touch with you soon
+              to provide further details and guide you through the next steps. If you have any immediate questions or concerns,
+              please feel free to reach out to us.
+            </p>
+            <p class="text-muted" style="font-family: 'Calibri', sans-serif; font-size: 18px;">Stay strong, and thank you for allowing us to assist you!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<center>
+<button onclick="generatePDF('mn')" type="button" class="btn btn-danger">Download PDF</button>
+</center>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.0/mammoth.browser.min.js"></script> 
+	<script type="text/javascript">
+		function generatePDF(containerId) {
+			const container = document.getElementById(containerId);
+			
+			// Set a fixed height for the container to fit within a single page
+			container.style.height = '1000px'; // Adjust height as needed
+			
+			// Set options for PDF generation
+			const pdfOptions = {
+				margin: 10,
+				filename: 'resume.pdf',
+				image: { type: 'jpeg', quality: 1.0 }, // Adjust quality here
+				html2canvas: { scale: 2 }, // Adjust scale here
+				jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+			};
+	
+			// Generate PDF from the specific container
+			html2pdf().from(container).set(pdfOptions).save();
+		}
+	</script>
+{% endblock content %}
